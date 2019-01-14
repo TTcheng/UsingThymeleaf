@@ -6,7 +6,7 @@ create table if not exists user
   id     bigint auto_increment
     primary key,
   age    int(3)          null,
-  gender enum ('F', 'M') null,
+  gender enum ('F', 'M') null
 --   `OBJECT_VERSION_NUMBER` decimal(20,0) DEFAULT '1',
 --   `REQUEST_ID` bigint(20) DEFAULT '-1' COMMENT '请求号',
 --   `PROGRAM_ID` bigint(20) DEFAULT '-1',

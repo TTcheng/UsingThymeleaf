@@ -3,8 +3,11 @@ package com.wcc.usingthymeleaf.mapper;
 import com.wcc.usingthymeleaf.entity.User;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 

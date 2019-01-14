@@ -1,6 +1,9 @@
 package com.wcc.usingthymeleaf.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID = -3155875419236070378L;
     private Long id;
 
     private String name;
