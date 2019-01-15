@@ -2,7 +2,7 @@ create table if not exists user
 (
   id       bigint auto_increment
     primary key,
-  name     varchar(32)     not null,
+  name     varchar(32)    unique not null,
   age      int(3)          null,
   password varchar(32)     null,
   gender   enum ('F', 'M') null

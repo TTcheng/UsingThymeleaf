@@ -20,4 +20,16 @@ create table if not exists user
 
 INSERT INTO employee(name, age, gender) VALUES ('Jesse',23,'M');
 INSERT INTO employee(name, age, gender) VALUES ('Jessie',22,'F');
+INSERT INTO employee(name, age, gender) VALUES ('Jessica',26,'F');
+INSERT INTO employee(name, age, gender) VALUES ('Alice',25,'F');
+INSERT INTO employee(name, age, gender) VALUES ('Angela',22,'F');
+INSERT INTO employee(name, age, gender) VALUES ('Morgan',25,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Jackson',25,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Jack',25,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Bob',25,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Zhangsan',25,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Lisi',28,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Wangwu',26,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Zhaoliu',27,'M');
+INSERT INTO employee(name, age, gender) VALUES ('Jenifer',25,'F');
 

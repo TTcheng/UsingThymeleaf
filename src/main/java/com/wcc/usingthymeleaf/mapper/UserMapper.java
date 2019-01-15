@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 
+    User selectByUserName(User user);
+
     int insert(User record);
 
     int insertSelective(User record);

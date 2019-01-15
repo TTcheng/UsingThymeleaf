@@ -36,6 +36,10 @@ public class UserService {
         return mapper.selectByPrimaryKey(user.getId());
     }
 
+    public User selectByUsername(User user){
+        return mapper.selectByUserName(user);
+    }
+
     /**
      * 登录,密码错误或验证失败时抛出异常
      * @author Wangchuncheng
@@ -45,7 +49,9 @@ public class UserService {
      * @return 数据库里的真实用户信息
      **/
     public User doLogin(User user) throws BusinessException {
-        User realUser = selectByPrimaryKey(user);
+        User condition = new User();
+        condition.setName(user.getName());
+        User realUser = selectByUsername(condition);
         boolean valid = EncryptionUtils.validate(user.getPassword(), realUser.getPassword());
         if (!valid) {
             throw new BusinessException("密码错误");

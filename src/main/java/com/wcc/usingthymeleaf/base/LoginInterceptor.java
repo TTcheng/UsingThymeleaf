@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         Object user = request.getSession().getAttribute("user");
         if (!(user instanceof User)) {
             // 未登录，重定向到登录页
-            response.sendRedirect("/user/login.html");
+            response.sendRedirect("/login");
             logger.debug("未登录用户访问", request.getSession());
             return false;
         }

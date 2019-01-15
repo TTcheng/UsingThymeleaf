@@ -18,12 +18,12 @@ public class LoginConfiguration implements WebMvcConfigurer {
         // 拦截路径
         loginRegistry.addPathPatterns("/**");
         // 排除路径
+        loginRegistry.excludePathPatterns("/login");
         loginRegistry.excludePathPatterns("/user/login");
         loginRegistry.excludePathPatterns("/user/logout");
         // 排除资源请求
         loginRegistry.excludePathPatterns("/hello");
         loginRegistry.excludePathPatterns("/index.html");
-        loginRegistry.excludePathPatterns("/user/login.html");
         loginRegistry.excludePathPatterns("/error/**");
         loginRegistry.excludePathPatterns("/lib/**");
         loginRegistry.excludePathPatterns("/res/**");

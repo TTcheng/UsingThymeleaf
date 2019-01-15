@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <!--<title th:text="#{login.login}">Login</title>-->
+    <title th:text="#{login.login}">Login</title>
     <script type="text/javascript">
         baseUrl = window.location.origin;
     </script>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/gtvg.css}" href="../../css/gtvg.css"/>
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery-3.3.1.js"/>');</script>
+    <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery.blockUI.js"/>');</script>
+    <script type="text/javascript" th:src="@{/res/js/common.js}" src="../../static/res/js/common.js"></script>
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/bootstrap/js/bootstrap.js"/>');</script>
+    <script>document.write('<link type="text/css" rel="stylesheet" href="' + baseUrl + '/lib/bootstrap/css/bootstrap.css"/>');</script>
     <script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/lib/bootstrap/css/bootstrap.css"/>');</script>
     <script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/res/css/login.css"/>');</script>
     <script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/res/css/form-elements.css"/>');</script>
@@ -22,31 +25,67 @@
             <div class="col-sm-6 col-sm-offset-3 form-box">
                 <div class="form-top">
                     <div class="form-top-left">
-                        <h3>Login to our site</h3>
-                        <p>Enter your username and password to log on:</p>
+                        <h3 th:text="#{login.title}">Login to our site</h3>
+                        <p th:text="#{login.tip}">Enter your username and password to log on:</p>
                     </div>
                     <div class="form-top-right">
                         <i class="fa fa-lock"></i>
                     </div>
                 </div>
                 <div class="form-bottom">
-                    <form role="form" action="" method="post" class="login-form">
-                        <div class="form-group">
-                            <label class="sr-only" for="form-username">Username</label>
-                            <input type="text" name="form-username" placeholder="Username..."
-                                   class="form-username form-control" id="form-username">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="form-password">Password</label>
-                            <input type="password" name="form-password" placeholder="Password..."
-                                   class="form-password form-control" id="form-password">
-                        </div>
-                        <button type="submit" class="btn">Sign in!</button>
-                    </form>
+                    <!--<form role="form" action="" method="post" class="login-form">-->
+                    <div class="form-group">
+                        <label class="sr-only" for="form-username">Username</label>
+                        <input type="text" name="form-username"
+                               th:placeholder="#{login.username}" placeholder="Username..."
+                               class="form-username form-control" id="form-username">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-password">Password</label>
+                        <input type="password" name="form-password"
+                               th:placeholder="#{login.password}" placeholder="Password..."
+                               class="form-password form-control" id="form-password">
+                    </div>
+                    <button id="submit" type="submit" class="btn" th:text="#{login.login}">Sign in!</button>
+                    <!--</form>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script>
+    var loginURL = baseUrl + "/user/login";
+    $("#submit").off().on('click', function () {
+        var name = $("#form-username").val();
+        var password = $("#form-password").val();
+        if (!name || !password) {
+            alert("用户名密码不能为空!");
+            return;
+        }
+        loading("open", "提交中...");
+        $.ajax({
+            url: loginURL,
+            type: "post",
+            dataType: "json",
+            data: {
+                name: name,
+                password: password
+            },
+            success: function (data) {
+                if (data.status === "success") {
+                    $(location).attr('href', baseUrl + '/emp/page');
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert("未知错误")
+            },
+            complete: function () {
+                loading("close")
+            }
+        })
+    })
+</script>
 </html>
