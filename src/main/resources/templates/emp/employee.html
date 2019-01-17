@@ -6,41 +6,17 @@
     <script type="text/javascript">
         baseUrl = window.location.origin;
     </script>
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css"/>
+    <!--<link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css"/>-->
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery-3.3.1.js"/>');</script>
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery.blockUI.js"/>');</script>
     <script type="text/javascript" th:src="@{/res/js/common.js}" src="../../static/res/js/common.js"></script>
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/bootstrap/js/bootstrap.js"/>');</script>
     <script>document.write('<link type="text/css" rel="stylesheet" href="' + baseUrl + '/lib/bootstrap/css/bootstrap.css"/>');</script>
     <script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/lib/bootstrap/css/bootstrap.css"/>');</script>
-    <style>
-        table.gridtable {
-            font-family: verdana,arial,sans-serif;
-            font-size:11px;
-            color:#333333;
-            border-width: 1px;
-            border-color: #666666;
-            border-collapse: collapse;
-        }
-        table.gridtable th {
-            border-width: 1px;
-            padding: 8px;
-            border-style: solid;
-            border-color: #666666;
-            background-color: #dedede;
-        }
-        table.gridtable td {
-            border-width: 1px;
-            padding: 8px;
-            border-style: solid;
-            border-color: #666666;
-            background-color: #ffffff;
-        }
-    </style>
 </head>
 <body>
-<div class="container" style="text-align: center">
-    <table class="table-bordered gridtable" align='center'>
+<div class="container table-responsive" style="text-align: center">
+    <table class="table table-condensed table-hover table-bordered">
         <thead>
         <tr>
             <th>id</th>
@@ -66,11 +42,12 @@
         </tbody>
     </table>
     <div style="margin-top: 5px">
-        <a th:text="#{employee.add}" th:href="@{/emp/edit}" class="btn-success">[新增]</a>
+        <a th:text="#{employee.add}" th:href="@{/emp/edit}" class="btn-success" style="margin-right: 10px">[新增]</a>
         <a th:text="#{employee.firstpage}" th:if="${pageInfo.isFirstPage==false}" th:href="|?page=${pageInfo.navigateFirstPage}|">[首 页]</a>
         <a th:text="#{employee.prepage}" th:if="${pageInfo.hasPreviousPage==true}" th:href="|?page=${pageInfo.prePage}|">[上一页]</a>
         <a th:text="#{employee.nextpage}" th:if="${pageInfo.hasNextPage==true}" th:href="|?page=${pageInfo.nextPage}|">[下一页]</a>
         <a th:text="#{employee.lastpage}" th:if="${pageInfo.isLastPage==false}" th:href="|?page=${pageInfo.navigateLastPage}|">[末 页]</a>
+        <a th:text="#{app.logout}" th:href="@{/user/logout}" class="btn-success" style="margin-left: 10px">[退出]</a>
     </div>
     <div class="row" style="margin-top: 5px">
         <span th:text="#{employee.pagetip}">当前页/总页数：</span>

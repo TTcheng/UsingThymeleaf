@@ -21,7 +21,7 @@ import java.util.List;
  * @date 19-1-15 上午11:28
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class EmployeeService {
     @Autowired
     private EmployeeMapper mapper;

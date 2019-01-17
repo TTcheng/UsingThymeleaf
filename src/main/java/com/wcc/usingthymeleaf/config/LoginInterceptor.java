@@ -1,4 +1,4 @@
-package com.wcc.usingthymeleaf.base;
+package com.wcc.usingthymeleaf.config;
 
 import com.wcc.usingthymeleaf.entity.User;
 import org.slf4j.Logger;

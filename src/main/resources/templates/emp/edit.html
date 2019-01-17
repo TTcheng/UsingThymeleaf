@@ -6,7 +6,7 @@
     <script type="text/javascript">
         baseUrl = window.location.origin;
     </script>
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css"/>
+    <!--<link rel="stylesheet" type="text/css" media="all" href="../../css/gtvg.css"/>-->
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery-3.3.1.js"/>');</script>
     <script>document.write('\<script type="text/javascript" src="' + baseUrl + '/lib/jquery/jquery.blockUI.js"/>');</script>
     <script type="text/javascript" th:src="@{/res/js/common.js}" src="../../static/res/js/common.js"></script>
@@ -15,40 +15,41 @@
     <script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/lib/bootstrap/css/bootstrap.css"/>');</script>
     <!--<script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/res/css/login.css"/>');</script>-->
     <!--<script>document.write('\<link type="text/css" rel="stylesheet" href="' + baseUrl + '/res/css/form-elements.css"/>');</script>-->
-    <style>
-        .row {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row col-xs-offset-3">
-        <div class="col-xs-3"><label th:text="#{employee.name}" for="name">姓名</label></div>
-        <div class="col-xs-3"><input id="name" th:value="${emp.name}" style="width: 100%"/></div>
-    </div>
-    <div class="row col-xs-offset-3">
-        <div class="col-xs-3"><label for="gender">性别</label></div>
-        <div class="col-xs-3">
-            <select id="gender" style="width: 100%;" th:value="${emp.gender=='F'?'女':'男'}">
-                <option th:selected="${emp.gender=='M'}">男</option>
-                <option th:selected="${emp.gender=='F'}">女</option>
-            </select>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" th:text="#{employee.name}" for="name">姓名</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="name" th:value="${emp.name}"/>
+            </div>
         </div>
-    </div>
-    <div class="row col-xs-offset-3">
-        <div class="col-xs-3"><label for="age">年龄</label></div>
-        <div class="col-xs-3"><input class="text-input" id="age" th:value="${emp.age}" style="width: 100%"/></div>
-    </div>
-    <div class="row col-xs-4 col-xs-offset-3 btn-group">
-        <div class="col-xs-6">
-            <button class="btn-primary pull-right" id="save" onclick="save()">保存</button>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="gender" th:text="#{employee.gender}">性别</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="gender" th:value="${emp.gender=='F'?'女':'男'}">
+                    <option th:selected="${emp.gender=='M'}">男</option>
+                    <option th:selected="${emp.gender=='F'}">女</option>
+                </select>
+            </div>
         </div>
-        <div class="col-xs-6">
-            <button class="btn-warning" id="cancle" onclick="cancle()">取消</button>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="age" th:text="#{employee.age}">年龄</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="age" th:value="${emp.age}"/>
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="button" class="btn btn-primary" id="save" onclick="save() " th:text="#{app.save}">保存
+                </button>
+                <button type="button" class="btn btn-warning" id="cancle" onclick="cancle()"
+                        th:text="#{app.cancel}">取消
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 <script>

@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * @date 19-1-14 下午3:45
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class UserService {
     @Resource
     private UserMapper mapper;

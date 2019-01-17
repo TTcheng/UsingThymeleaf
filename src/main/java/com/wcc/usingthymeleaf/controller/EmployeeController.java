@@ -1,6 +1,7 @@
 package com.wcc.usingthymeleaf.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wcc.usingthymeleaf.base.BaseController;
 import com.wcc.usingthymeleaf.base.ResponseData;
 import com.wcc.usingthymeleaf.entity.Employee;
 import com.wcc.usingthymeleaf.service.EmployeeService;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 @RequestMapping("/emp")
-public class EmployeeController {
+public class EmployeeController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private EmployeeService employeeService;
@@ -60,8 +61,12 @@ public class EmployeeController {
 
     @GetMapping("/page")
     public String getPage(Model model, Employee employee, @RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
-        if (page == null) page = 1;
-        if (pageSize == null) pageSize = 10;
+        if (page == null) {
+            page = 1;
+        }
+        if (pageSize == null) {
+            pageSize = 10;
+        }
         try {
             PageInfo<Employee> pageInfo = employeeService.select(employee, page, pageSize);
             model.addAttribute("pageInfo", pageInfo);
@@ -91,7 +96,7 @@ public class EmployeeController {
      * 新增或编辑页面
      * @author gongfucheng
      * @date 19-1-15 下午4:08
-     * @param model
+     * @param model 模型数据
      * @param id null时为新增，否则为编辑
      * @return java.lang.String
      **/

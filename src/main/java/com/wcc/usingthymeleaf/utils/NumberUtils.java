@@ -27,7 +27,7 @@ public class NumberUtils {
      * @return 是整数返回true,否则返回false
      */
     public static boolean isInteger(String str) {
-        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        final Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
     }
 
