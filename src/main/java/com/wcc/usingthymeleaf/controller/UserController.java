@@ -3,6 +3,7 @@ package com.wcc.usingthymeleaf.controller;
 import com.wcc.usingthymeleaf.base.BaseController;
 import com.wcc.usingthymeleaf.base.ResponseData;
 import com.wcc.usingthymeleaf.entity.User;
+import com.wcc.usingthymeleaf.exception.BusinessException;
 import com.wcc.usingthymeleaf.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,23 +40,15 @@ public class UserController extends BaseController {
      **/
     @ResponseBody
     @PostMapping("/user/login")
-    public ResponseData login(User user) {
+    public ResponseData login(User user) throws BusinessException {
         super.validateEmpty("name", user.getName());
-        ResponseData response = new ResponseData();
-        try {
-            User validUser = userService.doLogin(user);
-            super.getSession().setAttribute("user", validUser);
-            response.setStatus(ResponseData.STATUS_SUCCESS);
-        } catch (Exception e) {
-            response.setStatus(ResponseData.STATUS_ERROR);
-            response.setMessage(e.getMessage());
-            logger.error(ResponseData.STATUS_ERROR, e);
-        }
-        return response;
+        User validUser = userService.doLogin(user);
+        super.getSession().setAttribute("user", validUser);
+        return ResponseData.newSuccess();
     }
 
     @GetMapping("/user/logout")
-    public String logout(){
+    public String logout() {
         super.getSession().removeAttribute("user");
         return "redirect:/login";
     }

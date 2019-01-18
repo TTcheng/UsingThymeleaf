@@ -1,5 +1,8 @@
 package com.wcc.usingthymeleaf.base;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Copyright @ 2017 Shanghai Hand Co. Ltd.
  * All right reserved.
@@ -10,7 +13,9 @@ package com.wcc.usingthymeleaf.base;
  * @description 封装返回信息{status,message,data}
  * @date 19-1-14 下午3:29
  */
-public class ResponseData {
+public class ResponseData implements Serializable {
+    private static final long serialVersionUID = -1919560630109993566L;
+
     public static final String STATUS = "status";
     public static final String STATUS_SUCCESS = "success";
     public static final String STATUS_ERROR = "error";
@@ -18,14 +23,31 @@ public class ResponseData {
 
     private String status;
     private String message;
-    private Object data;
+    private List<BaseEntity> data;
+
+    private ResponseData(String status) {
+        this.status = status;
+    }
+
+    private ResponseData(String status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
+    public static ResponseData newSuccess() {
+        return new ResponseData(STATUS_SUCCESS);
+    }
+
+    public static ResponseData newError() {
+        return new ResponseData(STATUS_ERROR);
+    }
+
+    public static ResponseData newError(String message) {
+        return new ResponseData(STATUS_ERROR, message);
+    }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getMessage() {
@@ -36,11 +58,11 @@ public class ResponseData {
         this.message = message;
     }
 
-    public Object getData() {
+    public List<BaseEntity> getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(List<BaseEntity> data) {
         this.data = data;
     }
 }

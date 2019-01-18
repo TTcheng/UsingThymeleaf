@@ -1,5 +1,6 @@
 package com.wcc.usingthymeleaf.base;
 
+import com.wcc.usingthymeleaf.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
  * @author chuncehng.wang@hand-china.com
  * @version 1.0
  * @name BaseController
- * @description todo
+ * @description 基本控制器
  * @date 19-1-14 下午3:13
  */
 public class BaseController {
@@ -24,9 +25,9 @@ public class BaseController {
         return request;
     }
 
-    protected void validateEmpty(String name,Object val){
+    protected void validateEmpty(String name,Object val) throws BusinessException {
         if(StringUtils.isEmpty(val)){
-            throw new RuntimeException("["+name+"]不能为空");
+            throw new BusinessException("["+name+"]不能为空");
         }
     }
 

@@ -32,31 +32,15 @@ public class EmployeeController extends BaseController {
     @ResponseBody
     @GetMapping("/add")
     public ResponseData add(Employee employee) {
-        ResponseData responseData = new ResponseData();
-        try {
-            employeeService.insert(employee);
-            responseData.setStatus(ResponseData.STATUS_SUCCESS);
-        } catch (Exception e) {
-            responseData.setStatus(ResponseData.STATUS_ERROR);
-            responseData.setMessage(e.getMessage());
-            logger.error("error", e);
-        }
-        return responseData;
+        employeeService.insert(employee);
+        return ResponseData.newSuccess();
     }
 
     @ResponseBody
     @GetMapping("/update")
     public ResponseData update(Employee employee) {
-        ResponseData responseData = new ResponseData();
-        try {
-            employeeService.updateById(employee);
-            responseData.setStatus(ResponseData.STATUS_SUCCESS);
-        } catch (Exception e) {
-            responseData.setStatus(ResponseData.STATUS_ERROR);
-            responseData.setMessage(e.getMessage());
-            logger.error("error", e);
-        }
-        return responseData;
+        employeeService.updateById(employee);
+        return ResponseData.newSuccess();
     }
 
     @GetMapping("/page")
@@ -94,15 +78,16 @@ public class EmployeeController extends BaseController {
 
     /**
      * 新增或编辑页面
+     *
+     * @param model 模型数据
+     * @param id    null时为新增，否则为编辑
+     * @return java.lang.String
      * @author gongfucheng
      * @date 19-1-15 下午4:08
-     * @param model 模型数据
-     * @param id null时为新增，否则为编辑
-     * @return java.lang.String
      **/
     @GetMapping("/edit")
-    public String edit(Model model, @RequestParam(required = false) Long id) {
-        if (id==null){
+    public String addOrUpdate(Model model, @RequestParam(required = false) Long id) {
+        if (id == null) {
             //新增
             model.addAttribute("emp", new Employee());
             return "/emp/edit";
@@ -113,22 +98,4 @@ public class EmployeeController extends BaseController {
         return "/emp/edit";
     }
 
-   /*
-    @ResponseBody
-   @PostMapping("/query")
-    public ResponseData query(Model model, Employee employee,
-                              @RequestParam Integer page, @RequestParam Integer pageSize) {
-        ResponseData response = new ResponseData();
-        try {
-            List<Employee> emps = employeeService.select(employee, page, pageSize);
-            model.addAttribute("emps", emps);
-            response.setStatus(ResponseData.STATUS_SUCCESS);
-            response.setData(emps);
-        } catch (Exception e) {
-            response.setStatus(ResponseData.STATUS_ERROR);
-            response.setMessage(e.getMessage());
-            logger.error("error", e);
-        }
-        return response;
-    }*/
 }

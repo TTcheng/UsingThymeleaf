@@ -1,8 +1,8 @@
 package com.wcc.usingthymeleaf.entity;
 
-import java.io.Serializable;
+import com.wcc.usingthymeleaf.base.BaseEntity;
 
-public class Employee implements Serializable {
+public class Employee extends BaseEntity {
     private static final long serialVersionUID = -9048780689786822158L;
     private Long id;
 

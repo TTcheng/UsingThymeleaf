@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("com.wcc.*.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.wcc.usingthymeleaf"})
 public class UsingThymeleafApplication {
 
     public static void main(String[] args) {
